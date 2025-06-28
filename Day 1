@@ -1,0 +1,107 @@
+1) Even numbers:
+
+public class EvenNumbers {
+    public static void main(String[] args) {
+        System.out.println("Even numbers from 2 to 100:");
+        for (int i = 2; i <= 100; i += 2) {
+            System.out.print(i + " ");
+        }
+    }
+}
+
+
+
+
+2) Simple interest calculator:
+
+public class SimpleInterestCalculator {
+    public static void main(String[] args) {
+        double principal = 15000;
+        double rate = 4.5;
+        double time = 3;
+        double interest;
+
+        if (principal > 0 && rate > 0 && time > 0) {
+            interest = (principal * rate * time) / 100;
+            System.out.println("Simple Interest: " + interest);
+        } else {
+            System.out.println("Invalid input");
+        }
+    }
+}
+
+
+
+3) Leap year checker:
+
+public class LeapYearChecker {
+    public static void main(String[] args) {
+        int year = 2025;
+
+        if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
+            System.out.println(year + " is a leap year.");
+        else
+            System.out.println(year + " is not a leap year.");
+    }
+}
+
+
+
+
+4) Calculator:
+
+import java.util.Scanner;
+
+public class SimpleCalculator {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int ch;
+        double a, b;
+
+        while (true) {
+            System.out.println("Choose: 1.Add 2.Subtract 3.Multiply 4.Divide 5.Exit");
+            ch = sc.nextInt();
+
+            if (ch == 5) break;
+
+            System.out.print("Enter two values: ");
+            a = sc.nextDouble();
+            b = sc.nextDouble();
+
+            if (ch == 1)
+                System.out.println("Sum: " + (a + b));
+            else if (ch == 2)
+                System.out.println("Difference: " + (a - b));
+            else if (ch == 3)
+                System.out.println("Product: " + (a * b));
+            else if (ch == 4)
+                System.out.println(b != 0 ? "Quotient: " + (a / b) : "Divide by zero error");
+            else
+                System.out.println("Wrong choice");
+        }
+    }
+}
+
+
+
+5) Student result:
+
+import java.util.Scanner;
+
+public class StudentResult {
+    static String getGrade(int marks) {
+        if (marks >= 85) return "A";
+        else if (marks >= 75) return "B";
+        else if (marks >= 65) return "C";
+        else if (marks >= 50) return "D";
+        else return "Fail";
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter student marks: ");
+        int marks = sc.nextInt();
+        String grade = getGrade(marks);
+        System.out.println("Assigned Grade: " + grade);
+    }
+}

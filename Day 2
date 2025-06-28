@@ -1,0 +1,118 @@
+ 1. Reverse Array 
+
+import java.util.Scanner;
+
+public class ReverseArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] arr = new int[5];
+        System.out.println("Input 5 numbers:");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println("Array in reverse:");
+        for (int i = arr.length - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+2.Vowels and Consonants
+
+import java.util.Scanner;
+
+public class VowelConsonantCount {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter text: ");
+        String str = sc.nextLine().toLowerCase();
+        int vowels = 0, consonants = 0;
+
+        for (char ch : str.toCharArray()) {
+            if (ch >= 'a' && ch <= 'z') {
+                if ("aeiou".indexOf(ch) != -1)
+                    vowels++;
+                else
+                    consonants++;
+            }
+        }
+
+        System.out.println("Vowels = " + vowels);
+        System.out.println("Consonants = " + consonants);
+    }
+}
+
+
+3.Splitting Sentence 
+
+import java.util.Scanner;
+
+public class SplitSentence {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Type a sentence: ");
+        String input = sc.nextLine();
+        String[] splitWords = input.trim().split(" ");
+        for (String w : splitWords) {
+            System.out.println(w);
+        }
+    }
+}
+
+
+4.String Analyzer
+
+import java.util.Scanner;
+
+public class StringAnalyzer {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter text: ");
+        String str = sc.nextLine();
+        String[] words = str.split("\\s+");
+        int wordCount = words.length;
+        int charCount = str.replaceAll(" ", "").length();
+        String reversed = new StringBuilder(str).reverse().toString();
+        String longest = "";
+
+        for (String w : words) {
+            if (w.length() >= longest.length())
+                longest = w;
+        }
+
+        System.out.println("Word count: " + wordCount);
+        System.out.println("Character count: " + charCount);
+        System.out.println("Reversed string: " + reversed);
+        System.out.println("Longest word: " + longest);
+    }
+}
+
+
+5.Mini Address Book
+
+import java.util.Scanner;
+
+public class MiniAddressBook {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int size = 5;
+        String[] names = new String[size];
+        String[] phones = new String[size];
+        String[] emails = new String[size];
+
+        for (int i = 0; i < size; i++) {
+            System.out.println("Contact " + (i + 1));
+            System.out.print("Name : ");
+            names[i] = sc.nextLine();
+            System.out.print("Phone: ");
+            phones[i] = sc.nextLine();
+            System.out.print("Email: ");
+            emails[i] = sc.nextLine();
+        }
+
+        System.out.println("\nContacts:");
+        for (int i = 0; i < size; i++) {
+            System.out.println((i + 1) + ") " + names[i] + " | " + phones[i] + " | " + emails[i]);
+        }
+    }
+}

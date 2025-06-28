@@ -1,0 +1,115 @@
+1. Print numbers 1–10	
+
+class NumberPrinter extends Thread {
+    public void run() {
+        for (int i = 1; i <= 10; i++)
+            System.out.println(i);
+    }
+
+    public static void main(String[] args) {
+        NumberPrinter t = new NumberPrinter();
+        t.start();
+    }
+}
+
+2. Basic Runnable implementation with same message
+
+class MyTask implements Runnable {
+    public void run() {
+        System.out.println("Thread is running");
+    }
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread(new MyTask());
+        Thread t2 = new Thread(new MyTask());
+        t1.start();
+        t2.start();
+    }
+}
+
+ 3. Run one thread after another
+
+class JoinDemo extends Thread {
+    public void run() {
+        for (int i = 1; i <= 3; i++) {
+            System.out.println(getName() + ": " + i);
+            try {
+                Thread.sleep(400);
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        JoinDemo t1 = new JoinDemo();
+        JoinDemo t2 = new JoinDemo();
+
+        t1.start();
+        try {
+            t1.join();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+
+        t2.start();
+    }
+}
+
+
+4.Ticket Booking Simulation
+
+class BookingSystem {
+    int availableSeats = 5;
+
+    synchronized void reserve(String customer, int seatsRequested) {
+        System.out.println(customer + " wants to book " + seatsRequested + " seat(s)");
+        try {
+            Thread.sleep(400);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+
+        if (availableSeats >= seatsRequested) {
+            availableSeats -= seatsRequested;
+            System.out.println(customer + " successfully booked " + seatsRequested + " seat(s)");
+        } else {
+            System.out.println("Booking failed for " + customer + ". Only " + availableSeats + " seat(s) left");
+        }
+
+        System.out.println("Seats remaining: " + availableSeats);
+        System.out.println("----------------------------");
+    }
+}
+
+class Customer extends Thread {
+    BookingSystem system;
+    String name;
+    int seats;
+
+    Customer(BookingSystem system, String name, int seats) {
+        this.system = system;
+        this.name = name;
+        this.seats = seats;
+    }
+
+    public void run() {
+        system.reserve(name, seats);
+    }
+}
+
+public class TicketApp {
+    public static void main(String[] args) {
+        BookingSystem system = new BookingSystem();
+
+        Customer c1 = new Customer(system, "Ravi", 2);
+        Customer c2 = new Customer(system, "Priya", 2);
+        Customer c3 = new Customer(system, "Kiran", 2);
+
+        c1.start();
+        c2.start();
+        c3.start();
+    }
+}
+
+
